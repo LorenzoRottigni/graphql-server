@@ -6,13 +6,24 @@ var { buildSchema } = require('graphql');
 var mysql = require('mysql');
 
 //define mysql connection
+//var connection = mysql.createConnection({
+//  host     : 'localhost',
+//  user     : 'root',
+//  password : 'password',
+//  database : 'bookie_sloth',
+//  insecureAuth : true
+//});
+
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'password',
+  host     : '10.70.70.120',
+  user     : 'lorenzo',
+  password : 'DOCKERMYSQL',
   database : 'bookie_sloth',
   insecureAuth : true
 });
+
+
+
 
 //check connection
 connection.connect(function(err) {
