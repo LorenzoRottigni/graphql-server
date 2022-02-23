@@ -15,7 +15,7 @@ var mysql = require('mysql');
 //});
 
 var connection = mysql.createConnection({
-  host     : '127.0.0.1:3306',
+  host     : '172.17.0.2:3306',
   user     : 'lorenzo',
   password : 'DOCKERMYSQL',
   database : 'bookie_sloth',
