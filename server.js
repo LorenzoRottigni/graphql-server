@@ -1,26 +1,27 @@
-const { response } = require('express');
-var express = require('express');
-var { graphqlHTTP } = require('express-graphql');
-var { buildSchema } = require('graphql');
+//const { response } = require('express');
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
+const cors = require('cors');
 
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 //define mysql connection
-//var connection = mysql.createConnection({
-//  host     : 'localhost',
-//  user     : 'root',
-//  password : 'password',
-//  database : 'bookie_sloth',
-//  insecureAuth : true
-//});
-
 var connection = mysql.createConnection({
-  host     : '172.17.0.2:3306',
-  user     : 'lorenzo',
-  password : 'DOCKERMYSQL',
+  host     : 'localhost',
+  user     : 'root',
+  password : 'password',
   database : 'bookie_sloth',
   insecureAuth : true
 });
+
+//const connection = mysql.createConnection({
+//  host     : '172.17.0.2:3306',
+//  user     : 'lorenzo',
+//  password : 'DOCKERMYSQL',
+//  database : 'bookie_sloth',
+//  insecureAuth : true
+//});
 
 
 
@@ -32,7 +33,7 @@ connection.connect(function(err) {
 });
 
 //define the model of the apartments
-var ApartmentsSchema = buildSchema(`
+const ApartmentsSchema = buildSchema(`
   type Query {
     #get all apartments
     apartments:ApartmentsList
@@ -121,6 +122,7 @@ var root = {
 
 var app = express()
 
+app.use(cors())
 
 
 app.use('/graphql', graphqlHTTP({
